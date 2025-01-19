@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <title>Página de login</title>
+    <meta charset="utf-8">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'login_page/style.css' %}">
+</head>
+<body>
+<h2>Página de login vinculada ao dbsqlite</h2>
+<div class="container" id="container">
+    <div class="form-container sign-up-container">
+        <form action="/home/" method="POST"> {% csrf_token %}
+            <input type="hidden" name="action" value="signup">
+            <h1>Criar conta</h1>
+            <div class="social-container">
+                <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <span>Ou use um email para registro</span>
+            <input type="text" placeholder="Nome de usuário" />
+            <input type="email" placeholder="Email" />
+            <input type="password" placeholder="Senha" />
+            <button>Criar conta</button>
+        </form>
+    </div>
+    <div class="form-container sign-in-container">
+        <form action="/home/" method="POST"> {% csrf_token %}
+            <input type="hidden" name="action" value="login">
+            <h1>Fazer login</h1>
+            <div class="social-container">
+                <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <span>Já tem uma conta?</span>
+            <input type="email" placeholder="Email" />
+            <input type="password" placeholder="Senha" />
+            <a href="#">Esqueceu a senha?</a>
+            <button>Fazer login</button>
+        </form>
+    </div>
+    <div class="overlay-container">
+        <div class="overlay">
+            <div class="overlay-panel overlay-left">
+                <h1>Bem vindo de volta!</h1>
+                <p>Para continuar conectado conosco basta entrar em sua conta utilizadno suas informações de login.</p>
+                <button class="ghost" id="signIn">Fazer login</button>
+            </div>
+            <div class="overlay-panel overlay-right">
+                <h1>Seja bem vindo!</h1>
+                <p>Insira seus dados pessoais e comece sua jornada conosco</p>
+                <button class="ghost" id="signUp">Criar conta</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>
+        Pelo jeito ela tá querendo AHHWNNN
+    </p>
+</footer>
+</body>
+<script>
+    const signUpButton = document.getElementById('signUp');
+    const signInButton = document.getElementById('signIn');
+    const container = document.getElementById('container');
+
+    signUpButton.addEventListener('click', () => {
+        container.classList.add("right-panel-active");
+    });
+
+    signInButton.addEventListener('click', () => {
+        container.classList.remove("right-panel-active");
+    });
+</script>
+</html>
